@@ -10,7 +10,6 @@
 #include <vector>
 
 #include "upkie/cpp/actuation/MockInterface.h"
-#include "upkie/cpp/model/joints.h"
 #include "upkie/cpp/observers/BaseOrientation.h"
 #include "upkie/cpp/observers/FloorContact.h"
 #include "upkie/cpp/observers/ObserverPipeline.h"
@@ -113,7 +112,8 @@ class CommandLineArguments {
   bool version = false;
 };
 
-int main(const CommandLineArguments& args) {
+//! Build and run the simulation spine.
+int run_spine(const CommandLineArguments& args) {
   if (!upkie::cpp::utils::lock_memory()) {
     spdlog::error("could not lock process memory to RAM");
     return -4;
@@ -184,5 +184,5 @@ int main(int argc, char** argv) {
     std::cout << "Upkie mock spine " << upkie::cpp::kVersion << "\n";
     return EXIT_SUCCESS;
   }
-  return spines::mock::main(args);
+  return spines::mock::run_spine(args);
 }
